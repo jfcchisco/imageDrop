@@ -161,6 +161,14 @@ function drawMatrix() {
             cols = 1;
             rows = 2;
             break;
+        case '7':
+            cols = 2;
+            rows = 1;
+            break;
+        case '8':
+            cols = 5;
+            rows = 2;
+            break;
         default:
             cols = 3;
             rows = 2;
