@@ -162,3 +162,7 @@ img, canvas {
     border-radius: 3px;
     padding: 2px;
 }
+
+#drawCanvas {
+    display: none;
+}
