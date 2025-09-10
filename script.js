@@ -236,7 +236,7 @@ function preview() {
     let labels = document.getElementById("labels").checked;
     console.log(colTitle);
 
-    let canvas = document.getElementById("canvas")
+    let canvas = document.getElementById("drawCanvas")
     let ctx = canvas.getContext('2d')
 
     let modal = document.getElementById("previewModal");
@@ -362,6 +362,19 @@ function preview() {
         col++;
         
     }
+    const modalCanvas = document.getElementById('canvas');
+    let scale = Math.min(window.innerWidth * 0.9 / drawCanvas.width, window.innerHeight / drawCanvas.height);
+    console.log(scale);
+    
+    modalCanvas.width = drawCanvas.width * scale;
+    modalCanvas.height = drawCanvas.height * scale;
+    modal.style.height = rows * TILE_HEIGHT + colTitle * scale;
+    modal.style.width = cols * TILE_WIDTH + rowTitle * scale;
+    const modalCtx = modalCanvas.getContext('2d');
+
+   
+
+    modalCtx.drawImage(drawCanvas, 0, 0, modalCanvas.width, modalCanvas.height);
 
     //ctx.clearRect(0,0, canvas.width, canvas.height)
     //ctx.fillStyle = "#ffff00"
@@ -385,14 +398,14 @@ function previewClose() {
 function copyToClipboard() {
     let scale = 0.5;
 
-    const modalCanvas = document.getElementById('canvas');
+    const drawCanvas = document.getElementById('drawCanvas');
 
     const newCanvas = document.createElement('canvas');
-    newCanvas.width = modalCanvas.width * scale;
-    newCanvas.height = modalCanvas.height * scale;
+    newCanvas.width = drawCanvas.width * scale;
+    newCanvas.height = drawCanvas.height * scale;
 
     const ctx = newCanvas.getContext('2d');
-    ctx.drawImage(modalCanvas, 0, 0, newCanvas.width, newCanvas.height);
+    ctx.drawImage(drawCanvas, 0, 0, newCanvas.width, newCanvas.height);
 
     newCanvas.toBlob(function(blob) {
         const item = new ClipboardItem({"image/png": blob});
