@@ -91,6 +91,7 @@ function handleDrop(e) {
         const file = files[0];
         const canvas = e.target.parentElement.getElementsByClassName('preview')[0];
         const imgPreview = e.target.parentElement.getElementsByClassName('imgPreview')[0];
+        const clearButton = e.target.parentElement.getElementsByClassName('clearArea')[0];
         
         if (file.type === 'image/tiff' || file.name.match(/\.(tif|tiff)$/i)) {
             // Read TIFF file as ArrayBuffer
@@ -113,6 +114,7 @@ function handleDrop(e) {
 
                 canvas.style.display = 'block';
                 imgPreview.style.display = 'none';
+                clearButton.style.display = 'block';
             };
             reader.readAsArrayBuffer(file);
         } else if (file.type.startsWith('image/')) {
@@ -123,6 +125,7 @@ function handleDrop(e) {
                 imgPreview.src = event.target.result;
                 imgPreview.style.display = 'block';
                 canvas.style.display = 'none';
+                clearButton.style.display = 'block';
             };
             reader.readAsDataURL(file);
         } else {
@@ -417,4 +420,19 @@ function copyToClipboard() {
 function copyImage() {
     preview();
     copyToClipboard();
+}
+
+function clearImage(element, event) {
+    let image = event.target.parentElement.getElementsByClassName('imgPreview')[0];
+    let canvas = event.target.parentElement.getElementsByClassName('preview')[0];
+
+    image.src = "";
+    image.style.display = 'none';
+
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.style.display = 'none';
+
+    event.target.style.display = 'none';
+
 }
