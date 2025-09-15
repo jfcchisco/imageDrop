@@ -57,7 +57,6 @@
         <div id="previewModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-                <div style="user-select: none;" onclick="copyToClipboard()">Copy to clipboard</div>
                 <span class="close" onclick="previewClose()">>&times;</span>
                 <canvas id="canvas"></canvas>
                 <canvas id="drawCanvas"></canvas>
@@ -87,6 +86,7 @@
                     <canvas class="preview" style="display:none; z-index:-1"></canvas>
                     <img class="imgPreview" alt="Image preview" style="display:none; z-index:-1;" />
                 </div>
+                <div class="clearArea myButton" onclick="clearImage(this, event)">CLEAR</div>
             </div>
         </template>
 
