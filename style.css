@@ -157,12 +157,19 @@ img, canvas {
 }
 
 .myButton {
-    background-color: lavenderblush;
+    background-color: rgb(209, 255, 253);
     border: 1px solid black;
     border-radius: 3px;
     padding: 2px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #drawCanvas {
     display: none;
+}
+
+.clearArea {
+    display: none;
+    margin: 5px;
 }
